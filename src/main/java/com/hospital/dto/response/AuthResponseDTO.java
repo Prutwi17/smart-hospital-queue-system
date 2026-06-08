@@ -1,5 +1,6 @@
 package com.hospital.dto.response;
 
+import com.hospital.entity.enums.Role;
 import lombok.*;
 
 @Getter
@@ -15,7 +16,7 @@ public class AuthResponseDTO {
 
     private String email;
 
-    private String role;
+    private Role role;
 
     private String token;
 }

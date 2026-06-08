@@ -1,5 +1,6 @@
 package com.hospital.entity;
 
+import com.hospital.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,8 +25,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     private boolean active = true;
 }

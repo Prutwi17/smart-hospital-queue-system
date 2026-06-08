@@ -1,5 +1,6 @@
 package com.hospital.dto.request;
 
+import com.hospital.entity.enums.Role;
 import lombok.*;
 
 @Getter
@@ -15,5 +16,5 @@ public class RegisterRequestDTO {
 
     private String password;
 
-    private String role;
+    private Role role;
 }
