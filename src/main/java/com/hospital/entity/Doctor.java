@@ -29,4 +29,8 @@ public class Doctor {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 }
