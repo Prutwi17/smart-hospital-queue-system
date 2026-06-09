@@ -9,6 +9,7 @@ import com.hospital.exception.UserAlreadyExistsException;
 import com.hospital.repository.UserRepository;
 import com.hospital.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public AuthResponseDTO register(RegisterRequestDTO request) {
@@ -29,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
         User user = User.builder()
                 .fullName(request.getFullName())
                 .email(request.getEmail())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
 
@@ -53,7 +55,9 @@ public class AuthServiceImpl implements AuthService {
                                 "Invalid email or password"
                         ));
 
-        if (!user.getPassword().equals(request.getPassword())) {
+        if (!passwordEncoder.matches(
+                request.getPassword(),
+                user.getPassword())) {
 
             throw new InvalidCredentialsException(
                     "Invalid email or password"
