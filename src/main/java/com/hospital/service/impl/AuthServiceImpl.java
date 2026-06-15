@@ -7,6 +7,7 @@ import com.hospital.entity.User;
 import com.hospital.exception.InvalidCredentialsException;
 import com.hospital.exception.UserAlreadyExistsException;
 import com.hospital.repository.UserRepository;
+import com.hospital.security.JwtService;
 import com.hospital.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +19,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Override
     public AuthResponseDTO register(RegisterRequestDTO request) {
@@ -64,12 +66,17 @@ public class AuthServiceImpl implements AuthService {
             );
         }
 
+        String token =
+                jwtService.generateToken(
+                        user.getEmail()
+                );
+
         return AuthResponseDTO.builder()
                 .userId(user.getId())
                 .fullName(user.getFullName())
                 .email(user.getEmail())
                 .role(user.getRole())
-                .token(null)
+                .token(token)
                 .build();
     }
 }
