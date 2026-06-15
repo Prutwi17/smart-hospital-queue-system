@@ -41,4 +41,8 @@ public class AuthController {
                 "test@gmail.com"
         );
     }
+    @GetMapping("/test")
+    public String test() {
+        return "JWT Working";
+    }
 }
