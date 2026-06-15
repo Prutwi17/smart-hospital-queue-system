@@ -3,6 +3,7 @@ package com.hospital.controller;
 import com.hospital.dto.request.LoginRequestDTO;
 import com.hospital.dto.request.RegisterRequestDTO;
 import com.hospital.dto.response.AuthResponseDTO;
+import com.hospital.security.JwtService;
 import com.hospital.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
+    private final JwtService jwtService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponseDTO> register(
@@ -30,6 +32,13 @@ public class AuthController {
 
         return ResponseEntity.ok(
                 authService.login(request)
+        );
+    }
+    @GetMapping("/token-test")
+    public String tokenTest() {
+
+        return jwtService.generateToken(
+                "test@gmail.com"
         );
     }
 }
