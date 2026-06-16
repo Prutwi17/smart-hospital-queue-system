@@ -21,4 +21,6 @@ public class AppointmentRequestDTO {
     private LocalTime appointmentTime;
 
     private String reason;
+
+    private String priorityLevel;
 }
