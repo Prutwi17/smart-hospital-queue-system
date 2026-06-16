@@ -9,6 +9,8 @@ import lombok.*;
 @Builder
 public class PatientRequestDTO {
 
+    private Long userId;
+
     private Integer age;
 
     private String gender;
