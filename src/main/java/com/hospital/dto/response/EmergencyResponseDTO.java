@@ -2,6 +2,8 @@ package com.hospital.dto.response;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -9,7 +11,9 @@ import lombok.*;
 @Builder
 public class EmergencyResponseDTO {
 
-    private Long requestId;
+    private Long id;
+
+    private String patientName;
 
     private String symptoms;
 
@@ -17,5 +21,5 @@ public class EmergencyResponseDTO {
 
     private String priorityLevel;
 
-    private String status;
+    private LocalDateTime createdAt;
 }

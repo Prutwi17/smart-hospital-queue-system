@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 @Builder
 public class DoctorRequestDTO {
 
+    private Long userId;
+
+    private Long departmentId;
+
     private String specialization;
 
     private Integer experience;
@@ -18,6 +22,4 @@ public class DoctorRequestDTO {
     private BigDecimal consultationFee;
 
     private Boolean available;
-
-    private Long departmentId;
 }

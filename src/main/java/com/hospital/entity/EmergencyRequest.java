@@ -31,4 +31,9 @@ public class EmergencyRequest {
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
+
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
+    }
 }

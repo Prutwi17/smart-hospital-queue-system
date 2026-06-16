@@ -12,4 +12,6 @@ public class EmergencyRequestDTO {
     private Long patientId;
 
     private String symptoms;
+
+    private Integer priorityScore;
 }
