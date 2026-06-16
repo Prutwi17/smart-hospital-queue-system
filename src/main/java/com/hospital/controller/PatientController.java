@@ -6,6 +6,7 @@ import com.hospital.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class PatientController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<PatientResponseDTO> getAllPatients() {
 
         return patientService.getAllPatients();
